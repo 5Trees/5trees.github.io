@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello OpenCV.js</title>
+</head>
+
+<body>
+    <h2>图像处理</h2>
+    <p id="status">OpenCV.js 加载中</p>
+    <div>
+        <div class="inputoutput">
+            <img id="imageSrc" alt="无图片" />
+            <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
+        </div>
+        <div class="inputoutput">
+            <canvas id="canvasOutput2"></canvas>
+            <!--canvas id="canvasOutput" ></canvas-->
+            <div class="caption">输出</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        let imgElement = document.getElementById('imageSrc');
+        let inputElement = document.getElementById('fileInput');
+        inputElement.addEventListener('change', (e) => {
+            imgElement.src = URL.createObjectURL(e.target.files[0]);
+        }, false);
+        imgElement.onload = function () {
+            let mat = cv.imread(imgElement);
+            cv.cvtColor(mat, mat, cv.COLOR_BGR2GRAY);
+            let dst = new cv.Mat();
+            
+            
+            cv.imshow('canvasOutput2', dst);
+            mat.delete(); dst.delete();
+        };
+        var Module = {
+            // https://emscripten.org/docs/api_reference/module.html#Module.onRuntimeInitialized
+            onRuntimeInitialized() {
+                document.getElementById('status').innerHTML = 'OpenCV.js 已就绪';
+            }
+        };
+    </script>
+    <script async src="https://docs.opencv.org/4.5.0/opencv.js" type="text/javascript"></script>
+</body><!--script async src="opencv.js" type="text/javascript"></script-->
+</body>
+
+</html>
