@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <title>SLS's 分子量计算</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="sign-in.css" rel="stylesheet">
+        <script>/* Pinegrow Interactions, do not remove */ (function(){try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { window.pgia_small_mq=typeof pgia_small_mq=='string'?pgia_small_mq:'(max-width:767px)';window.pgia_large_mq=typeof pgia_large_mq=='string'?pgia_large_mq:'(min-width:768px)';var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id') && document.documentElement.hasAttribute('data-pg-mobile')) {pgia_small_mq='(min-width:0)';pgia_large_mq='(min-width:99999px)'} pgcss+='@media ' + pgia_small_mq + '{ html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}}';pgcss+='@media ' + pgia_large_mq + '{html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}}';style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}})()</script>
+    </head>
+    <body class="text-center">
+        <main class="form-signin">
+            <div>
+                <img class="mb-4" alt="" width="72" height="72" loading="lazy" src="assets/mychem.png">
+                <h1 class="h3 mb-3 fw-normal" id="title">分子量计算</h1>
+                <label for="input#cheq-input" class="visually-hidden">输入化学式：</label>
+                <input type="text" id="cheq-input" class="form-control form-control-lg" placeholder="请输入化学式" required="true" autofocus="" data-pg-name="cheq-input" onchange="onChange()">
+                <p class="mt-5 mb-3 text-muted" style="grid-area:3 / 1 / 4 / 3;">&copy; 2025 5Trees</p>
+            </div>
+        </main>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="pgia/lib/pgia.js"></script>
+        <script src="cheq.js"></script>
+        <script>
+            cin = document.getElementById("cheq-input")
+            title = document.getElementById("title")
+            function onChange() {
+                title.innerHTML = `${cin.value} => ${calc(cin.value).toString()}`
+            }
+
+        </script>
+    </body>
+</html>
